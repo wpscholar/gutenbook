@@ -1,0 +1,28 @@
+.wp-block-wpscholar-gutenbook {
+    background-color: #eee;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.wp-block-wpscholar-gutenbook__title {
+    font-weight: bold;
+    margin-bottom: .5em;
+}
+
+.wp-block-wpscholar-gutenbook__description {
+
+}
+
+.wp-block-wpscholar-gutenbook__description p {
+    margin: .5em 0;
+    padding: 0;
+}
+
+.wp-block-wpscholar-gutenbook__author {
+    text-align: right;
+    font-style: italic;
+}
+
+.wp-block-wpscholar-gutenbook__author:before {
+    content: '- '
+}
