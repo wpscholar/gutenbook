@@ -26,3 +26,7 @@
 .wp-block-wpscholar-gutenbook__author:before {
     content: '- '
 }
+
+.wp-block-wpscholar-gutenbook__author[data-is-placeholder-visible="true"]:before {
+    display: none;
+}
