@@ -12,12 +12,18 @@
  * Text Domain: gutenbook
  */
 
+load_plugin_textdomain(
+	'gutenbook',
+	false,
+	plugin_basename( __DIR__ ) . '/languages/'
+);
+
 add_action( 'init', function () {
 
 	wp_register_script(
 		'wpscholar-gutenbook',
 		plugins_url( 'block.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-element' )
+		array( 'underscore', 'wp-blocks', 'wp-data', 'wp-element', 'wp-i18n' )
 	);
 
 	wp_register_style(
@@ -27,9 +33,19 @@ add_action( 'init', function () {
 		filemtime( __DIR__ . '/block.css' )
 	);
 
-	register_block_type( 'wpscholar/gutenbook', [
-		'style'         => 'wpscholar-gutenbook',
-		'editor_script' => 'wpscholar-gutenbook',
-	] );
+	if ( function_exists( 'gutenberg_get_jed_locale_data' ) ) {
+		wp_add_inline_script(
+			'wpscholar-gutenbook',
+			'wp.i18n.setLocaleData( ' . json_encode( gutenberg_get_jed_locale_data( 'gutenbook' ) ) . ' );',
+			'before'
+		);
+	}
+
+	if ( function_exists( 'register_block_type' ) ) {
+		register_block_type( 'wpscholar/gutenbook', [
+			'style'         => 'wpscholar-gutenbook',
+			'editor_script' => 'wpscholar-gutenbook',
+		] );
+	}
 
 } );
