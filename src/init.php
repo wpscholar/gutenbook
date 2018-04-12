@@ -1,12 +1,4 @@
 <?php
-/**
- * Blocks Initializer
- *
- * Enqueue CSS/JS of all the blocks.
- *
- * @since 	1.0.0
- * @package CGB
- */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,18 +12,18 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-function gutenbook_cgb_block_assets() {
-	// Styles.
-	wp_enqueue_style(
-		'gutenbook-cgb-style-css', // Handle.
-		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
-		array( 'wp-blocks' ) // Dependency to include the CSS after it.
-		// filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' ) // Version: filemtime — Gets file modification time.
-	);
-} // End function gutenbook_cgb_block_assets().
+function gutenbook_block_assets() {
 
-// Hook: Frontend assets.
-add_action( 'enqueue_block_assets', 'gutenbook_cgb_block_assets' );
+	wp_enqueue_style(
+		'gutenbook-style-css',
+		plugins_url( 'dist/blocks.style.build.css', __DIR__ ),
+		[ 'wp-blocks' ],
+		filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' )
+	);
+
+}
+
+add_action( 'enqueue_block_assets', 'gutenbook_block_assets' );
 
 /**
  * Enqueue Gutenberg block assets for backend editor.
@@ -42,23 +34,22 @@ add_action( 'enqueue_block_assets', 'gutenbook_cgb_block_assets' );
  *
  * @since 1.0.0
  */
-function gutenbook_cgb_editor_assets() {
-	// Scripts.
+function gutenbook_editor_assets() {
+
 	wp_enqueue_script(
-		'gutenbook-cgb-block-js', // Handle.
-		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
-		array( 'wp-blocks', 'wp-i18n', 'wp-element' ) // Dependencies, defined above.
-		// filemtime( plugin_dir_path( __FILE__ ) . 'block.js' ) // Version: filemtime — Gets file modification time.
+		'gutenbook-block-js',
+		plugins_url( '/dist/blocks.build.js', __DIR__ ),
+		[ 'wp-blocks', 'wp-i18n', 'wp-element' ],
+		filemtime( plugin_dir_path( __FILE__ ) . 'block.js' )
 	);
 
-	// Styles.
 	wp_enqueue_style(
-		'gutenbook-cgb-block-editor-css', // Handle.
-		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
-		array( 'wp-edit-blocks' ) // Dependency to include the CSS after it.
-		// filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' ) // Version: filemtime — Gets file modification time.
+		'gutenbook-block-editor-css', // Handle.
+		plugins_url( 'dist/blocks.editor.build.css', __DIR__ ),
+		[ 'wp-edit-blocks' ],
+		filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' )
 	);
-} // End function gutenbook_cgb_editor_assets().
 
-// Hook: Editor assets.
-add_action( 'enqueue_block_editor_assets', 'gutenbook_cgb_editor_assets' );
+}
+
+add_action( 'enqueue_block_editor_assets', 'gutenbook_editor_assets' );
