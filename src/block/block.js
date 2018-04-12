@@ -1,35 +1,27 @@
-/**
- * BLOCK: gutenbook
- *
- * Registering a basic block with Gutenberg.
- * Simple block, renders and saves the same content without any interactivity.
- */
-
-//  Import CSS.
 import './style.scss';
 import './editor.scss';
 
-const { __ } = wp.i18n; // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+const { __ } = wp.i18n;
+const { registerBlockType } = wp.blocks;
 
 /**
- * Register: aa Gutenberg Block.
- *
- * Registers a new block provided a unique name and an object defining its
- * behavior. Once registered, the block is made editor as an option to any
- * editor interface where blocks are implemented.
+ * Register our Gutenbook block
  *
  * @link https://wordpress.org/gutenberg/handbook/block-api/
- * @param  {string}   name     Block name.
- * @param  {Object}   settings Block settings.
- * @return {?WPBlock}          The block, if it has been successfully
- *                             registered; otherwise `undefined`.
+ *
+ * @param  {string} name Block name.
+ * @param  {Object} settings Block settings.
+ *
+ * @return {?WP_Block} The block, if it has been successfully registered; otherwise `undefined`.
  */
 registerBlockType( 'cgb/block-gutenbook', {
-	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'gutenbook - CGB Block' ), // Block title.
-	icon: 'shield', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
-	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
+
+	title: __( 'gutenbook - CGB Block' ),
+
+	icon: 'shield',
+
+	category: 'common',
+
 	keywords: [
 		__( 'gutenbook — CGB Block' ),
 		__( 'CGB Example' ),
@@ -43,17 +35,19 @@ registerBlockType( 'cgb/block-gutenbook', {
 	 * The "edit" property must be a valid function.
 	 *
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
+	 *
+	 * @param {Object} props Props for edit component.
+	 * @returns {string} Rendered markup.
 	 */
 	edit: function( props ) {
-		// Creates a <p class='wp-block-cgb-block-gutenbook'></p>.
 		return (
-			<div className={ props.className }>
+			<div className={props.className}>
 				<p>— Hello from the backend.</p>
 				<p>
 					CGB BLOCK: <code>gutenbook</code> is a new Gutenberg block
 				</p>
 				<p>
-					It was created via{ ' ' }
+					It was created via
 					<code>
 						<a href="https://github.com/ahmadawais/create-guten-block">
 							create-guten-block
@@ -71,6 +65,9 @@ registerBlockType( 'cgb/block-gutenbook', {
 	 * The "save" property must be specified and must be a valid function.
 	 *
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
+	 *
+	 * @param {Object} props Props for edit component.
+	 * @returns {string} Rendered markup.
 	 */
 	save: function( props ) {
 		return (
@@ -80,7 +77,7 @@ registerBlockType( 'cgb/block-gutenbook', {
 					CGB BLOCK: <code>gutenbook</code> is a new Gutenberg block.
 				</p>
 				<p>
-					It was created via{ ' ' }
+					It was created via
 					<code>
 						<a href="https://github.com/ahmadawais/create-guten-block">
 							create-guten-block
@@ -90,4 +87,5 @@ registerBlockType( 'cgb/block-gutenbook', {
 			</div>
 		);
 	},
+
 } );
