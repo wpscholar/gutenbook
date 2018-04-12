@@ -1,15 +1,15 @@
 <?php
-/**
- * Plugin Name: gutenbook — CGB Gutenberg Block Plugin
- * Plugin URI: https://github.com/ahmadawais/create-guten-block/
- * Description: gutenbook — is a Gutenberg plugin created via create-guten-block.
- * Author: mrahmadawais, maedahbatool
- * Author URI: https://AhmadAwais.com/
- * Version: 1.0.0
- * License: GPL2+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- *
- * @package CGB
+
+/*
+ * Plugin Name: Gutenbook
+ * Plugin URI:
+ * Description: A custom Gutenberg block for displaying book details (author, description and title) in a card-style format.
+ * Version: 0.1.0
+ * Author: Micah Wood
+ * Author URI:  https://wpscholar.com
+ * License:     GPL2
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: gutenbook
  */
 
 // Exit if accessed directly.
