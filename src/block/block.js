@@ -18,7 +18,7 @@ registerBlockType( 'wpscholar/gutenbook', {
 
 	title: __( 'Gutenbook' ),
 
-	icon: 'shield',
+	icon: 'book-alt',
 
 	category: 'common',
 
