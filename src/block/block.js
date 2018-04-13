@@ -20,7 +20,7 @@ registerBlockType( 'wpscholar/gutenbook', {
 
 	icon: 'book-alt',
 
-	category: 'common',
+	category: 'layout',
 
 	keywords: [
 		__( 'Gutenbook' ),
