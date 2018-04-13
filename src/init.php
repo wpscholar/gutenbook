@@ -39,7 +39,7 @@ function gutenbook_editor_assets() {
 	wp_enqueue_script(
 		'gutenbook-block-js',
 		plugins_url( '/dist/blocks.build.js', __DIR__ ),
-		[ 'wp-blocks', 'wp-i18n', 'wp-element' ],
+		[ 'wp-blocks', 'wp-element', 'wp-i18n' ],
 		filemtime( __DIR__ . '/block/block.js' )
 	);
 
