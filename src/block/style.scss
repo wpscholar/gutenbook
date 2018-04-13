@@ -1,14 +1,28 @@
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
+.wp-block-wpscholar-gutenbook {
 
-.wp-block-cgb-block-gutenbook  {
-  background: $red;
-  border: 0.2rem solid $black;
-  color: $black;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem;
+  background-color: #eee;
+  padding: 10px;
+  margin: 10px 0;
+
+  &__title {
+	font-weight: bold;
+	margin-bottom: .5em;
+  }
+
+  &__description p {
+	margin: .5em 0;
+	padding: 0;
+  }
+
+  &__author {
+	text-align: right;
+	font-style: italic;
+	&:before {
+	  content: '- ';
+	}
+	&[data-is-placeholder-visible="true"]:before {
+	  display: none;
+	}
+  }
+
 }
