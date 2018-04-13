@@ -138,7 +138,7 @@
 				"message": "Translate function arguments must be string literals."
 			}
 		],
-		"no-shadow": "error",
+		"no-shadow": "off",
 		"no-undef": "error",
 		"no-undef-init": "error",
 		"no-unreachable": "error",
