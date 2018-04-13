@@ -16,16 +16,14 @@ const { registerBlockType } = wp.blocks;
  */
 registerBlockType( 'wpscholar/gutenbook', {
 
-	title: __( 'gutenbook - CGB Block' ),
+	title: __( 'Gutenbook' ),
 
 	icon: 'shield',
 
 	category: 'common',
 
 	keywords: [
-		__( 'gutenbook — CGB Block' ),
-		__( 'CGB Example' ),
-		__( 'create-guten-block' ),
+		__( 'Gutenbook' ),
 	],
 
 	/**
