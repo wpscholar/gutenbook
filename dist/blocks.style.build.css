@@ -1,18 +1,1 @@
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-cgb-block-gutenbook {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
+.wp-block-wpscholar-gutenbook{background-color:#eee;padding:10px;margin:10px 0}.wp-block-wpscholar-gutenbook__title{font-weight:bold;margin-bottom:.5em}.wp-block-wpscholar-gutenbook__description p{margin:.5em 0;padding:0}.wp-block-wpscholar-gutenbook__author{text-align:right;font-style:italic}.wp-block-wpscholar-gutenbook__author:before{content:'- '}.wp-block-wpscholar-gutenbook__author[data-is-placeholder-visible="true"]:before{display:none}
