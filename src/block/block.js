@@ -14,7 +14,7 @@ const { registerBlockType } = wp.blocks;
  *
  * @return {?WP_Block} The block, if it has been successfully registered; otherwise `undefined`.
  */
-registerBlockType( 'cgb/block-gutenbook', {
+registerBlockType( 'wpscholar/gutenbook', {
 
 	title: __( 'gutenbook - CGB Block' ),
 
