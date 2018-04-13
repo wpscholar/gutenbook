@@ -1,8 +1,15 @@
 import './style.scss';
 import './editor.scss';
 
+const { registerBlockType, RichText } = wp.blocks;
+const { withState } = wp.components;
 const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
+
+const placeholders = {
+	author: __( 'Mark Twain', 'gutenbook' ),
+	description: __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'gutenbook' ),
+	title: __( 'Adventures of Huckleberry Finn', 'gutenbook' ),
+};
 
 /**
  * Register our Gutenbook block
@@ -16,15 +23,31 @@ const { registerBlockType } = wp.blocks;
  */
 registerBlockType( 'wpscholar/gutenbook', {
 
-	title: __( 'Gutenbook' ),
+	title: __( 'Gutenbook', 'gutenbook' ),
 
 	icon: 'book-alt',
 
 	category: 'layout',
 
 	keywords: [
-		__( 'Gutenbook' ),
+		__( 'Gutenbook', 'gutenbook' ),
 	],
+
+	attributes: {
+		title: {
+			type: 'text',
+			selector: '.wp-block-wpscholar-gutenbook__title',
+		},
+		description: {
+			type: 'html',
+			source: 'children',
+			selector: '.wp-block-wpscholar-gutenbook__description',
+		},
+		author: {
+			type: 'text',
+			selector: '.wp-block-wpscholar-gutenbook__author',
+		},
+	},
 
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
@@ -37,24 +60,45 @@ registerBlockType( 'wpscholar/gutenbook', {
 	 * @param {Object} props Props for edit component.
 	 * @returns {string} Rendered markup.
 	 */
-	edit: function( props ) {
-		return (
-			<div className={props.className}>
-				<p>— Hello from the backend.</p>
-				<p>
-					CGB BLOCK: <code>gutenbook</code> is a new Gutenberg block
-				</p>
-				<p>
-					It was created via
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
-			</div>
-		);
-	},
+	edit: withState( { focus: 'title' } )(
+		function( { attributes: { author = '', description = '', title = '' }, className, focus, isSelected, setAttributes, setState } ) {
+			return (
+				<div className={className}>
+					<RichText
+						className="wp-block-wpscholar-gutenbook__title"
+						keepPlaceholderOnFocus={true}
+						key="title"
+						onChange={title => setAttributes( { title } )}
+						onFocus={() => setState( { focus: 'title' } )}
+						placeholder={placeholders.title}
+						value={title}
+						isSelected={isSelected && focus === 'title'}
+					/>
+					<RichText
+						className="wp-block-wpscholar-gutenbook__description"
+						keepPlaceholderOnFocus={true}
+						key="description"
+						multiline="p"
+						onChange={description => setAttributes( { description } )}
+						onFocus={() => setState( { focus: 'description' } )}
+						placeholder={placeholders.description}
+						value={description}
+						isSelected={isSelected && focus === 'description'}
+					/>
+					<RichText
+						className="wp-block-wpscholar-gutenbook__author"
+						keepPlaceholderOnFocus={true}
+						key="author"
+						onChange={author => setAttributes( { author } )}
+						onFocus={() => setState( { focus: 'author' } )}
+						placeholder={placeholders.author}
+						value={author}
+						isSelected={isSelected && focus === 'author'}
+					/>
+				</div>
+			);
+		}
+	),
 
 	/**
 	 * The save function defines the way in which the different attributes should be combined
@@ -67,21 +111,12 @@ registerBlockType( 'wpscholar/gutenbook', {
 	 * @param {Object} props Props for edit component.
 	 * @returns {string} Rendered markup.
 	 */
-	save: function( props ) {
+	save: function( { attributes: { author, description, title } } ) {
 		return (
 			<div>
-				<p>— Hello from the frontend.</p>
-				<p>
-					CGB BLOCK: <code>gutenbook</code> is a new Gutenberg block.
-				</p>
-				<p>
-					It was created via
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
+				<div className="wp-block-wpscholar-gutenbook__title" key="title">{title}</div>
+				<div className="wp-block-wpscholar-gutenbook__description" key="description">{description}</div>
+				<div className="wp-block-wpscholar-gutenbook__author" key="author">{author}</div>
 			</div>
 		);
 	},
