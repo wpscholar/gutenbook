@@ -18,7 +18,7 @@ function gutenbook_block_assets() {
 		'gutenbook-style-css',
 		plugins_url( 'dist/blocks.style.build.css', __DIR__ ),
 		[ 'wp-blocks' ],
-		filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' )
+		filemtime( __DIR__ . '/block/editor.scss' )
 	);
 
 }
@@ -40,14 +40,14 @@ function gutenbook_editor_assets() {
 		'gutenbook-block-js',
 		plugins_url( '/dist/blocks.build.js', __DIR__ ),
 		[ 'wp-blocks', 'wp-i18n', 'wp-element' ],
-		filemtime( plugin_dir_path( __FILE__ ) . 'block.js' )
+		filemtime( __DIR__ . '/block/block.js' )
 	);
 
 	wp_enqueue_style(
 		'gutenbook-block-editor-css', // Handle.
 		plugins_url( 'dist/blocks.editor.build.css', __DIR__ ),
 		[ 'wp-edit-blocks' ],
-		filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' )
+		filemtime( __DIR__ . '/block/editor.scss' )
 	);
 
 }
